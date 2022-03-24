@@ -26,3 +26,24 @@ jobs:
             - run: npm ci
             - run: npm run lint
             - run: npm run test:local
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: set ssh key
+              run: |
+                  mkdir -p ~/.ssh/
+                  echo "${{secrets.RSA}}" > ~/.ssh/id_rsa
+                  chmod 600 ~/.ssh/id_rsa
+                  ssh-keyscan "114.132.43.129" >> ~/.ssh/known_hosts
+            - name: deploy
+              run: |
+                  ssh root@114.132.43.129 "
+                  cd /home/task;
+                  git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/auto-ci.git;
+                  git pull origin master;
+                  git remote remove origin;
+                  "
+            - name: delete ssh key
+              run: rm -rf ~/.ssh/id_rsa
