@@ -15,5 +15,7 @@ module.exports = {
         // 'no-unused-vars': 0,
         'no-console': 'off',
         'prettier/prettier': 'off',
+        'new-cap': 'off',
+        'class-methods-use-this': 'off',
     },
 }

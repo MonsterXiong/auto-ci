@@ -1,0 +1,20 @@
+# 直接使用uses 第三方
+- uses: actions/checkout@v2
+
+# 使用name：和uses第三方
+- name： Use Node.js
+  uses: actions/setup-node@v1
+  with: 
+  	node-version：14
+  	
+#使用name和run
+- name: lint and test
+  run: |
+	npm i 
+	npm run lint
+	npm run test
+
+# 直接使用run
+- run: npm i 
+- run: npm run lint
+- run: npm run test
