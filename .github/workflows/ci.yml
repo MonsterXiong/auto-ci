@@ -41,10 +41,11 @@ jobs:
               run: |
                   ssh root@114.132.43.129 "
                   cd /home/task;
-                  git clone https://github.com/MonsterXiong/auto-ci.git
-                  git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/auto-ci.git;
-                  git pull origin master;
-                  git remote remove origin;
+                  mkdir lxc
                   "
+                  # git clone https://github.com/MonsterXiong/auto-ci.git
+                  # git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/auto-ci.git;
+                  # git pull origin master;
+                  # git remote remove origin;
             - name: delete ssh key
               run: rm -rf ~/.ssh/id_rsa
